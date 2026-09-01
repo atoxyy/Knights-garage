@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Knight's Garage — iRacing Setups, Coaching &amp; Liveries</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#121417;
+    --surface:#1b1e23;
+    --surface-2:#20242a;
+    --line:#2b3038;
+    --ink:#eceff2;
+    --ink-dim:#9aa2ad;
+    --flag-amber:#f2a900;
+    --pit-teal:#3ecf9a;
+    --brake-red:#e1362c;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    line-height:1.55;
+  }
+  h1,h2,h3,.wordmark{
+    font-family:'Oswald', sans-serif;
+    font-weight:600;
+    letter-spacing:0.01em;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 24px;}
+
+  /* Nav */
+  header{
+    position:sticky; top:0; z-index:20;
+    background:rgba(18,20,23,0.9);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:64px;
+  }
+  .wordmark{font-size:1.25rem;}
+  .wordmark span{color:var(--flag-amber);}
+  .navlinks{display:flex; gap:28px; font-size:0.92rem; color:var(--ink-dim);}
+  .navlinks a:hover{color:var(--ink);}
+
+  /* Hero */
+  .hero{
+    padding:88px 0 72px;
+    border-bottom:1px solid var(--line);
+    background:
+      linear-gradient(180deg, rgba(18,20,23,0) 0%, rgba(18,20,23,1) 100%),
+      repeating-linear-gradient(100deg, transparent 0 120px, var(--surface) 120px 122px);
+  }
+  .hero .wrap{display:grid; grid-template-columns:1.2fr 0.8fr; gap:48px; align-items:end;}
+  .hero h1{font-size:clamp(2.2rem, 5vw, 3.4rem); line-height:1.05;}
+  .hero p.lede{margin-top:18px; max-width:44ch; color:var(--ink-dim); font-size:1.05rem;}
+  .hero-stats{display:flex; flex-direction:column; gap:14px; border-left:2px solid var(--flag-amber); padding-left:20px;}
+  .hero-stats .stat{display:flex; justify-content:space-between; gap:16px; font-size:0.92rem;}
+  .hero-stats .stat b{font-family:'Oswald',sans-serif; font-weight:600; color:var(--pit-teal);}
+  .cta-row{margin-top:32px; display:flex; gap:14px; flex-wrap:wrap;}
+  .btn{
+    display:inline-block; padding:12px 22px; font-size:0.92rem; font-weight:600;
+    border-radius:3px; border:1px solid transparent; cursor:pointer;
+  }
+  .btn-primary{background:var(--flag-amber); color:#181a1d;}
+  .btn-primary:hover{background:#ffbb1f;}
+  .btn-ghost{border-color:var(--line); color:var(--ink);}
+  .btn-ghost:hover{border-color:var(--ink-dim);}
+
+  /* Section shell */
+  section{padding:64px 0; border-bottom:1px solid var(--line);}
+  .section-head{display:flex; justify-content:space-between; align-items:baseline; gap:24px; margin-bottom:32px; flex-wrap:wrap;}
+  .section-head h2{font-size:1.7rem;}
+  .section-head p{color:var(--ink-dim); font-size:0.95rem; max-width:40ch;}
+
+  /* Setups grid */
+  .setup-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:18px;}
+  .setup-card{
+    background:var(--surface); border:1px solid var(--line); border-radius:4px;
+    padding:20px; display:flex; flex-direction:column; gap:10px;
+  }
+  .setup-card .track{font-family:'Oswald',sans-serif; font-size:1.05rem; font-weight:500;}
+  .setup-card .car{color:var(--ink-dim); font-size:0.88rem;}
+  .setup-card .price{margin-top:auto; display:flex; justify-content:space-between; align-items:center; padding-top:10px; border-top:1px solid var(--line);}
+  .setup-card .price b{color:var(--flag-amber); font-family:'Oswald',sans-serif; font-size:1.1rem;}
+  .setup-card .buy{font-size:0.85rem; color:var(--pit-teal);}
+
+  /* Laptimes / video */
+  .video-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:20px;}
+  .video-card{background:var(--surface); border:1px solid var(--line); border-radius:4px; overflow:hidden;}
+  .video-frame{aspect-ratio:16/9; background:var(--surface-2); position:relative;}
+  .video-frame iframe{width:100%; height:100%; border:0;}
+  .video-meta{padding:14px 16px;}
+  .video-meta .laptime{font-family:'Oswald',sans-serif; color:var(--pit-teal); font-size:1rem;}
+  .video-meta .desc{color:var(--ink-dim); font-size:0.85rem; margin-top:4px;}
+
+  /* Coaching */
+  .coach-layout{display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start;}
+  .coach-list{display:flex; flex-direction:column; gap:16px;}
+  .coach-item{padding:16px 0; border-bottom:1px solid var(--line);}
+  .coach-item h3{font-size:1rem; font-weight:500; margin-bottom:4px;}
+  .coach-item p{color:var(--ink-dim); font-size:0.88rem;}
+  .coach-panel{background:var(--surface); border:1px solid var(--line); border-radius:4px; padding:24px;}
+  .coach-panel .rate{font-family:'Oswald',sans-serif; font-size:2rem; color:var(--flag-amber);}
+  .coach-panel .rate span{font-size:0.9rem; color:var(--ink-dim); font-family:'Inter',sans-serif;}
+
+  /* Paint shop */
+  .paint-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:16px;}
+  .paint-card{background:var(--surface); border:1px solid var(--line); border-radius:4px; overflow:hidden;}
+  .swatch{aspect-ratio:16/10; background:linear-gradient(135deg, var(--surface-2), var(--line));}
+  .paint-info{padding:14px 16px; display:flex; justify-content:space-between; align-items:center;}
+  .paint-info span{font-size:0.9rem;}
+  .paint-info b{color:var(--flag-amber); font-family:'Oswald',sans-serif;}
+
+  /* About */
+  .about-layout{display:grid; grid-template-columns:0.9fr 1.1fr; gap:48px; align-items:start;}
+  .about-layout h2{font-size:1.7rem; margin-bottom:18px;}
+  .about-layout p{color:var(--ink-dim); font-size:0.98rem; margin-bottom:14px;}
+  .about-layout p b{color:var(--ink); font-weight:500;}
+  .credentials{display:flex; flex-direction:column; gap:0;}
+  .cred-item{padding:16px 0; border-top:1px solid var(--line);}
+  .cred-item:last-child{border-bottom:1px solid var(--line);}
+  .cred-item .role{font-family:'Oswald',sans-serif; font-size:1rem; font-weight:500;}
+  .cred-item .org{color:var(--flag-amber); font-size:0.85rem; margin-top:2px;}
+  .cred-item .meta{color:var(--ink-dim); font-size:0.8rem; margin-top:2px;}
+  .cred-item .detail{color:var(--ink-dim); font-size:0.88rem; margin-top:8px;}
+
+  footer{padding:40px 0; text-align:center; color:var(--ink-dim); font-size:0.85rem;}
+
+  @media (max-width:760px){
+    .hero .wrap{grid-template-columns:1fr;}
+    .coach-layout{grid-template-columns:1fr;}
+    .navlinks{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="wordmark">KNIGHT'S<span>GARAGE</span></div>
+    <div class="navlinks">
+      <a href="#setups">Setups</a>
+      <a href="#laptimes">Lap Times</a>
+      <a href="#coaching">Coaching</a>
+      <a href="#paints">Paint Shop</a>
+      <a href="#about">About</a>
+    </div>
+    <a href="#setups" class="btn btn-primary" style="padding:8px 16px; font-size:0.85rem;">Browse setups</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <h1>Setups built off real race data,<br>not a hunch.</h1>
+      <p class="lede">Track-specific iRacing setups, coaching, and custom liveries from a mechanical engineer who works on real race cars — and turns every lap himself before it's for sale.</p>
+      <div class="cta-row">
+        <a href="#setups" class="btn btn-primary">Shop setups</a>
+        <a href="#coaching" class="btn btn-ghost">Book coaching</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span>Watkins Glen — GT3</span><b>1:42.310</b></div>
+      <div class="stat"><span>Spa — LMP2</span><b>2:16.884</b></div>
+      <div class="stat"><span>Road America — Formula</span><b>2:03.117</b></div>
+    </div>
+  </div>
+</section>
+
+<section id="setups">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Setup shop</h2>
+      <p>Every setup is run on-track first and sold with the lap on video to back it up.</p>
+    </div>
+    <div class="setup-grid">
+      <div class="setup-card">
+        <div class="track">Watkins Glen International</div>
+        <div class="car">GT3 — Ferrari 296</div>
+        <div class="price"><span class="buy">Includes race + qualy setup</span><b>$5</b></div>
+      </div>
+      <div class="setup-card">
+        <div class="track">Spa-Francorchamps</div>
+        <div class="car">LMP2 — Oreca 07</div>
+        <div class="price"><span class="buy">Includes race + qualy setup</span><b>$6</b></div>
+      </div>
+      <div class="setup-card">
+        <div class="track">Road America</div>
+        <div class="car">Formula iR-04</div>
+        <div class="price"><span class="buy">Qualy setup</span><b>$4</b></div>
+      </div>
+      <div class="setup-card">
+        <div class="track">Suzuka Circuit</div>
+        <div class="car">GT3 — Porsche 911</div>
+        <div class="price"><span class="buy">Includes race + qualy setup</span><b>$5</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="laptimes">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Lap time proof</h2>
+      <p>Onboard footage for every setup listed above — see it before you buy it.</p>
+    </div>
+    <div class="video-grid">
+      <div class="video-card">
+        <div class="video-frame"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Watkins Glen onboard" allowfullscreen></iframe></div>
+        <div class="video-meta">
+          <div class="laptime">1:42.310 — Watkins Glen</div>
+          <div class="desc">GT3 qualifying lap, Ferrari 296</div>
+        </div>
+      </div>
+      <div class="video-card">
+        <div class="video-frame"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Spa onboard" allowfullscreen></iframe></div>
+        <div class="video-meta">
+          <div class="laptime">2:16.884 — Spa-Francorchamps</div>
+          <div class="desc">LMP2 race stint, Oreca 07</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="coaching">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Coaching</h2>
+      <p>1-on-1 sessions over Discord screen share — telemetry review, race craft, or setup tuning.</p>
+    </div>
+    <div class="coach-layout">
+      <div class="coach-list">
+        <div class="coach-item">
+          <h3>Telemetry breakdown</h3>
+          <p>Send a lap, get a full review of braking points, throttle trace, and where time is left on the table.</p>
+        </div>
+        <div class="coach-item">
+          <h3>Live session coaching</h3>
+          <p>I ride along on Discord while you drive, calling out corrections in real time.</p>
+        </div>
+        <div class="coach-item">
+          <h3>Setup tuning walkthrough</h3>
+          <p>Learn how to adjust a base setup yourself for your driving style, not just use mine.</p>
+        </div>
+      </div>
+      <div class="coach-panel">
+        <div class="rate">$25<span> / hour</span></div>
+        <p style="color:var(--ink-dim); font-size:0.88rem; margin-top:10px;">Sessions booked by request — message with your class and a couple time windows that work.</p>
+        <a href="#" class="btn btn-primary" style="margin-top:18px; width:100%; text-align:center;">Request a session</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="paints" style="border-bottom:none;">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Paint shop</h2>
+      <p>Custom liveries and skins for popular GT3, LMP2, and oval cars.</p>
+    </div>
+    <div class="paint-grid">
+      <div class="paint-card">
+        <div class="swatch"></div>
+        <div class="paint-info"><span>Circuit Break — GT3</span><b>$8</b></div>
+      </div>
+      <div class="paint-card">
+        <div class="swatch"></div>
+        <div class="paint-info"><span>Night Runner — LMP2</span><b>$10</b></div>
+      </div>
+      <div class="paint-card">
+        <div class="swatch"></div>
+        <div class="paint-info"><span>Amber Flag — Oval</span><b>$8</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about" style="border-bottom:none;">
+  <div class="wrap">
+    <div class="about-layout">
+      <div>
+        <h2>About</h2>
+        <p>I'm Ryan Knight, a mechanical engineer working in race operations and vehicle development. <b>Knight's Garage</b> started because I kept building setups for myself that were faster than anything I could find online — so I started sharing them.</p>
+        <p>Everything here is built the same way I'd approach a real car: test it, measure it, adjust it, and only hand it off once it's actually fast. The lap time videos aren't marketing — they're the same proof I'd want to see before trusting a setup myself.</p>
+      </div>
+      <div class="credentials">
+        <div class="cred-item">
+          <div class="role">Mechanical Engineering Intern — Race Operations &amp; Vehicle Development</div>
+          <div class="org">Cambern Performance Engineering</div>
+          <div class="meta">Mar 2025 – Present · Lansing, MI</div>
+          <div class="detail">Manage race-day strategy, fuel monitoring, and pit stop coordination for endurance races; own front and rear suspension setup, alignment, and car readiness for GTO-class competition; adjust vehicle configuration with drivers and crew based on track conditions and data.</div>
+        </div>
+        <div class="cred-item">
+          <div class="role">Design &amp; Development Specialist</div>
+          <div class="org">Studio Design and Millwork</div>
+          <div class="meta">May 2023 – Aug 2025 · Utica, MI</div>
+          <div class="detail">Programmed CNC cut paths for precision cabinetry components — tolerances that don't forgive guesswork, the same mindset that goes into every setup sold here.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Knight's Garage — built by an engineer, not a marketing team.</div>
+</footer>
+
+</body>
+</html>
