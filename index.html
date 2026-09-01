@@ -1,24 +1,55 @@
 ```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Knight's Garage | Sim Racing Performance</title>
+    <title>Knight's Garage — iRacing Setups, Coaching & Liveries</title>
+
+    <!-- =========================================================
+         FONTS
+         ========================================================= -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+
+
+    <!-- =========================================================
+         WEBSITE STYLE
+         ========================================================= -->
 
     <style>
 
-        /* =========================================================
-           KNIGHT'S GARAGE
-           MAIN WEBSITE STYLING
-           
-           You generally should NOT need to edit anything below
-           this point unless you want to change the appearance.
-           ========================================================= */
+        :root {
 
+            --bg: #121417;
 
-        /* ---------- GENERAL ---------- */
+            --surface: #1b1e23;
+
+            --surface-2: #20242a;
+
+            --line: #2b3038;
+
+            --ink: #eceff2;
+
+            --ink-dim: #9aa2ad;
+
+            --flag-amber: #f2a900;
+
+            --pit-teal: #3ecf9a;
+
+        }
+
 
         * {
             box-sizing: border-box;
@@ -26,21 +57,42 @@
             padding: 0;
         }
 
+
         html {
             scroll-behavior: smooth;
         }
 
+
         body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #0b0b0b;
-            color: #f2f2f2;
-            line-height: 1.6;
+
+            background: var(--bg);
+
+            color: var(--ink);
+
+            font-family: 'Inter', sans-serif;
+
+            line-height: 1.55;
+
         }
+
+
+        h1,
+        h2,
+        h3,
+        .wordmark {
+
+            font-family: 'Oswald', sans-serif;
+
+            text-transform: uppercase;
+
+        }
+
 
         a {
             color: inherit;
             text-decoration: none;
         }
+
 
         img {
             max-width: 100%;
@@ -48,468 +100,963 @@
         }
 
 
-        /* ---------- CONTAINER ---------- */
-
         .container {
-            width: 90%;
-            max-width: 1200px;
+
+            width: min(1180px, 92%);
+
             margin: 0 auto;
+
         }
 
 
-        /* ---------- NAVIGATION ---------- */
+        /* =====================================================
+           NAVIGATION
+           ===================================================== */
 
         nav {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
 
-            background: rgba(10, 10, 10, 0.95);
-            border-bottom: 1px solid #252525;
-            backdrop-filter: blur(10px);
+            position: sticky;
+
+            top: 0;
+
+            z-index: 100;
+
+            background: rgba(18, 20, 23, 0.94);
+
+            backdrop-filter: blur(12px);
+
+            border-bottom: 1px solid var(--line);
+
         }
+
 
         .nav-inner {
+
+            min-height: 72px;
+
             display: flex;
-            justify-content: space-between;
+
             align-items: center;
 
-            min-height: 70px;
+            justify-content: space-between;
+
+            gap: 30px;
+
         }
 
-        .logo {
-            font-size: 1.4rem;
-            font-weight: 800;
+
+        .wordmark {
+
+            font-size: 1.45rem;
+
+            font-weight: 700;
+
             letter-spacing: 1px;
+
+            white-space: nowrap;
+
         }
 
-        .logo span {
-            color: #d8d8d8;
-            font-weight: 400;
+
+        .wordmark span {
+
+            color: var(--flag-amber);
+
         }
+
 
         .nav-links {
+
             display: flex;
-            gap: 28px;
+
+            align-items: center;
+
+            gap: 25px;
+
             list-style: none;
+
         }
+
 
         .nav-links a {
-            color: #bcbcbc;
-            font-size: 0.95rem;
+
+            color: var(--ink-dim);
+
+            font-size: 0.82rem;
+
+            font-weight: 600;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.8px;
+
             transition: 0.2s;
+
         }
+
 
         .nav-links a:hover {
-            color: white;
+
+            color: var(--ink);
+
         }
 
 
-        /* ---------- HERO ---------- */
+        /* =====================================================
+           HERO
+           ===================================================== */
 
         .hero {
+
             min-height: 78vh;
 
             display: flex;
+
             align-items: center;
 
+            position: relative;
+
+            overflow: hidden;
+
             background:
+
                 linear-gradient(
-                    rgba(0, 0, 0, 0.62),
-                    rgba(0, 0, 0, 0.85)
+                    90deg,
+                    rgba(18,20,23,0.96) 0%,
+                    rgba(18,20,23,0.78) 48%,
+                    rgba(18,20,23,0.35) 100%
                 ),
+
                 url("images/hero.jpg");
 
             background-size: cover;
+
             background-position: center;
+
         }
+
+
+        .hero::after {
+
+            content: "";
+
+            position: absolute;
+
+            bottom: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 5px;
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    var(--flag-amber) 0 50%,
+                    var(--pit-teal) 50% 100%
+                );
+
+        }
+
 
         .hero-content {
-            max-width: 760px;
+
+            max-width: 720px;
+
             padding: 90px 0;
+
         }
+
 
         .eyebrow {
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-size: 0.8rem;
-            color: #aaa;
-            margin-bottom: 15px;
-        }
 
-        .hero h1 {
-            font-size: clamp(3rem, 7vw, 6rem);
-            line-height: 0.95;
-            margin-bottom: 25px;
-            letter-spacing: -3px;
-        }
+            color: var(--flag-amber);
 
-        .hero p {
-            max-width: 650px;
-            font-size: 1.1rem;
-            color: #c7c7c7;
-            margin-bottom: 35px;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-
-        /* ---------- BUTTONS ---------- */
-
-        .button {
-            display: inline-block;
-            padding: 13px 22px;
-
-            border: 1px solid #555;
-            background: white;
-            color: black;
+            font-size: 0.75rem;
 
             font-weight: 700;
-            font-size: 0.9rem;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 14px;
+
+        }
+
+
+        .hero h1 {
+
+            font-size: clamp(3.5rem, 8vw, 7rem);
+
+            line-height: 0.92;
+
+            letter-spacing: -1px;
+
+            margin-bottom: 28px;
+
+        }
+
+
+        .hero h1 span {
+
+            color: var(--flag-amber);
+
+        }
+
+
+        .hero p {
+
+            color: var(--ink-dim);
+
+            max-width: 650px;
+
+            font-size: 1.05rem;
+
+            margin-bottom: 34px;
+
+        }
+
+
+        .hero-buttons {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 12px;
+
+        }
+
+
+        /* =====================================================
+           BUTTONS
+           ===================================================== */
+
+        .button {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            min-height: 46px;
+
+            padding: 0 20px;
+
+            background: var(--flag-amber);
+
+            color: #111;
+
+            border: 1px solid var(--flag-amber);
+
+            font-size: 0.78rem;
+
+            font-weight: 700;
+
+            letter-spacing: 0.8px;
+
+            text-transform: uppercase;
 
             cursor: pointer;
+
             transition: 0.2s;
+
         }
+
 
         .button:hover {
-            background: #dcdcdc;
+
             transform: translateY(-2px);
+
+            filter: brightness(1.08);
+
         }
+
 
         .button.secondary {
+
             background: transparent;
-            color: white;
-            border-color: #555;
+
+            color: var(--ink);
+
+            border-color: var(--line);
+
         }
+
 
         .button.secondary:hover {
-            background: #1a1a1a;
+
+            border-color: var(--ink-dim);
+
         }
 
 
-        /* ---------- SECTIONS ---------- */
+        /* =====================================================
+           SECTIONS
+           ===================================================== */
 
         section {
-            padding: 100px 0;
-        }
 
-        .section-heading {
-            margin-bottom: 45px;
-        }
+            padding: 90px 0;
 
-        .section-heading h2 {
-            font-size: 2.4rem;
-            margin-bottom: 10px;
-        }
-
-        .section-heading p {
-            color: #999;
-            max-width: 650px;
         }
 
 
-        /* ---------- SETUP GRID ---------- */
+        .section-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: end;
+
+            gap: 30px;
+
+            margin-bottom: 38px;
+
+        }
+
+
+        .section-header h2 {
+
+            font-size: 2.8rem;
+
+            line-height: 1;
+
+        }
+
+
+        .section-description {
+
+            max-width: 560px;
+
+            color: var(--ink-dim);
+
+            font-size: 0.94rem;
+
+        }
+
+
+        /* =====================================================
+           SETUP SHOP
+           ===================================================== */
 
         .setup-grid {
+
             display: grid;
 
             grid-template-columns:
-                repeat(auto-fit, minmax(280px, 1fr));
+                repeat(3, 1fr);
 
-            gap: 25px;
+            gap: 18px;
+
         }
 
+
         .setup-card {
-            background: #111;
-            border: 1px solid #242424;
+
+            background: var(--surface);
+
+            border: 1px solid var(--line);
 
             overflow: hidden;
 
             transition: 0.25s;
+
         }
+
 
         .setup-card:hover {
-            transform: translateY(-5px);
-            border-color: #444;
+
+            transform: translateY(-4px);
+
+            border-color: #464c55;
+
         }
+
 
         .setup-image {
+
             width: 100%;
-            height: 210px;
+
+            height: 220px;
 
             object-fit: cover;
 
-            background: #181818;
+            background: var(--surface-2);
+
         }
+
 
         .setup-content {
-            padding: 24px;
+
+            padding: 23px;
+
         }
+
 
         .setup-car {
-            color: #888;
-            font-size: 0.8rem;
+
+            color: var(--ink-dim);
+
+            font-size: 0.7rem;
+
+            font-weight: 700;
+
+            letter-spacing: 1.4px;
+
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 5px;
+
+            margin-bottom: 4px;
+
         }
+
 
         .setup-track {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
 
-        .setup-details {
-            display: flex;
-            justify-content: space-between;
+            font-family: 'Oswald', sans-serif;
 
-            border-top: 1px solid #282828;
-            border-bottom: 1px solid #282828;
+            font-size: 1.55rem;
 
-            padding: 15px 0;
-            margin-bottom: 20px;
-        }
-
-        .detail-label {
-            display: block;
-            color: #777;
-            font-size: 0.7rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+
+            margin-bottom: 18px;
+
         }
 
-        .detail-value {
-            font-size: 1rem;
-            font-weight: 700;
+
+        .setup-meta {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            border-top: 1px solid var(--line);
+
+            border-bottom: 1px solid var(--line);
+
+            margin-bottom: 18px;
+
         }
+
+
+        .setup-meta-item {
+
+            padding: 13px 0;
+
+        }
+
+
+        .setup-meta-item + .setup-meta-item {
+
+            border-left: 1px solid var(--line);
+
+            padding-left: 18px;
+
+        }
+
+
+        .meta-label {
+
+            display: block;
+
+            color: var(--ink-dim);
+
+            font-size: 0.63rem;
+
+            font-weight: 700;
+
+            letter-spacing: 1px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 2px;
+
+        }
+
+
+        .meta-value {
+
+            font-size: 1rem;
+
+            font-weight: 700;
+
+        }
+
 
         .setup-button {
+
             width: 100%;
-            text-align: center;
+
         }
 
 
-        /* ---------- LAP TIMES ---------- */
+        /* =====================================================
+           LAP TIME SECTION
+           ===================================================== */
 
         .lap-section {
-            background: #101010;
+
+            background: var(--surface);
+
+            border-top: 1px solid var(--line);
+
+            border-bottom: 1px solid var(--line);
+
         }
+
 
         .lap-grid {
-            display: grid;
-            grid-template-columns:
-                repeat(auto-fit, minmax(300px, 1fr));
 
-            gap: 25px;
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 18px;
+
         }
+
 
         .lap-card {
-            background: #151515;
-            border: 1px solid #292929;
+
+            background: var(--bg);
+
+            border: 1px solid var(--line);
+
             overflow: hidden;
+
         }
 
-        .lap-video {
+
+        .video-container {
+
+            position: relative;
+
             width: 100%;
+
             aspect-ratio: 16 / 9;
 
-            background: #050505;
+            background: #08090a;
+
+        }
+
+
+        .video-container iframe {
+
+            width: 100%;
+
+            height: 100%;
+
+            border: 0;
+
+        }
+
+
+        .video-placeholder {
+
+            position: absolute;
+
+            inset: 0;
 
             display: flex;
+
             align-items: center;
+
             justify-content: center;
 
-            color: #666;
+            color: var(--ink-dim);
+
+            font-size: 0.8rem;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
         }
 
-        .lap-video iframe {
-            width: 100%;
-            height: 100%;
-            border: 0;
+
+        .lap-info {
+
+            padding: 20px;
+
         }
 
-        .lap-content {
-            padding: 22px;
+
+        .lap-car {
+
+            color: var(--ink-dim);
+
+            font-size: 0.68rem;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1.2px;
+
         }
+
 
         .lap-track {
-            color: #888;
+
+            font-family: 'Oswald', sans-serif;
+
+            font-size: 1.25rem;
+
             text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.75rem;
+
+            margin-top: 2px;
+
         }
+
 
         .lap-time {
-            font-size: 2rem;
-            font-weight: 800;
-            margin-top: 5px;
+
+            font-family: 'Oswald', sans-serif;
+
+            font-size: 2.2rem;
+
+            color: var(--flag-amber);
+
+            line-height: 1;
+
+            margin-top: 12px;
+
         }
 
 
-        /* ---------- COACHING / PAINT SHOP ---------- */
+        /* =====================================================
+           SERVICES
+           ===================================================== */
 
         .service-grid {
+
             display: grid;
 
             grid-template-columns:
-                repeat(auto-fit, minmax(300px, 1fr));
+                repeat(2, 1fr);
 
-            gap: 25px;
+            gap: 18px;
+
         }
+
 
         .service-card {
-            background: #111;
-            border: 1px solid #292929;
-            padding: 35px;
+
+            background: var(--surface);
+
+            border: 1px solid var(--line);
+
+            padding: 32px;
+
         }
+
+
+        .service-number {
+
+            color: var(--flag-amber);
+
+            font-family: 'Oswald', sans-serif;
+
+            font-size: 0.85rem;
+
+            margin-bottom: 20px;
+
+        }
+
 
         .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 12px;
+
+            font-size: 2rem;
+
+            margin-bottom: 10px;
+
         }
 
-        .service-price {
-            font-size: 1.7rem;
-            font-weight: 800;
-            margin: 20px 0;
-        }
 
         .service-card p {
-            color: #aaa;
-            margin-bottom: 25px;
+
+            color: var(--ink-dim);
+
+            margin-bottom: 22px;
+
+            max-width: 500px;
+
         }
 
 
-        /* ---------- ABOUT ---------- */
+        .service-price {
+
+            font-family: 'Oswald', sans-serif;
+
+            font-size: 1.5rem;
+
+            margin-bottom: 22px;
+
+        }
+
+
+        /* =====================================================
+           ABOUT
+           ===================================================== */
 
         .about-grid {
+
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 55px;
 
             align-items: center;
+
         }
+
 
         .about-image {
-            height: 500px;
+
             width: 100%;
+
+            height: 500px;
+
             object-fit: cover;
 
-            background: #171717;
+            background: var(--surface);
+
+            border: 1px solid var(--line);
+
         }
+
 
         .about-text h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
+
+            font-size: 3rem;
+
+            line-height: 1;
+
+            margin-bottom: 22px;
+
         }
+
 
         .about-text p {
-            color: #aaa;
-            margin-bottom: 18px;
+
+            color: var(--ink-dim);
+
+            margin-bottom: 16px;
+
         }
 
 
-        /* ---------- CTA ---------- */
+        /* =====================================================
+           CTA
+           ===================================================== */
 
         .cta {
+
+            background: var(--surface);
+
+            border-top: 1px solid var(--line);
+
+            border-bottom: 1px solid var(--line);
+
             text-align: center;
-            background: #111;
-            border-top: 1px solid #252525;
-            border-bottom: 1px solid #252525;
+
         }
+
 
         .cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
+
+            font-size: 3rem;
+
+            line-height: 1;
+
+            margin-bottom: 14px;
+
         }
+
 
         .cta p {
+
             max-width: 600px;
-            margin: 0 auto 30px;
-            color: #aaa;
+
+            margin: 0 auto 26px;
+
+            color: var(--ink-dim);
+
         }
 
 
-        /* ---------- FOOTER ---------- */
+        /* =====================================================
+           FOOTER
+           ===================================================== */
 
         footer {
-            padding: 40px 0;
-            color: #666;
-            font-size: 0.85rem;
+
+            padding: 35px 0;
+
+            color: var(--ink-dim);
+
+            font-size: 0.75rem;
+
         }
+
 
         .footer-inner {
+
             display: flex;
+
             justify-content: space-between;
+
             gap: 20px;
-            flex-wrap: wrap;
+
         }
 
 
-        /* ---------- MOBILE ---------- */
+        /* =====================================================
+           RESPONSIVE
+           ===================================================== */
 
-        @media (max-width: 750px) {
+        @media (max-width: 900px) {
 
-            .nav-inner {
-                flex-direction: column;
-                padding: 18px 0;
-                gap: 15px;
+            .setup-grid,
+            .lap-grid {
+
+                grid-template-columns: repeat(2, 1fr);
+
             }
 
-            .nav-links {
-                gap: 15px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .hero {
-                min-height: 70vh;
-            }
 
             .about-grid {
+
                 grid-template-columns: 1fr;
+
             }
+
 
             .about-image {
-                height: 350px;
+
+                height: 400px;
+
             }
 
-            section {
-                padding: 70px 0;
+        }
+
+
+        @media (max-width: 650px) {
+
+            .nav-inner {
+
+                flex-direction: column;
+
+                padding: 18px 0;
+
+            }
+
+
+            .nav-links {
+
+                flex-wrap: wrap;
+
+                justify-content: center;
+
+                gap: 14px;
+
+            }
+
+
+            .hero {
+
+                min-height: 70vh;
+
+            }
+
+
+            .hero h1 {
+
+                font-size: 4rem;
+
+            }
+
+
+            .section-header {
+
+                display: block;
+
+            }
+
+
+            .section-header h2 {
+
+                margin-bottom: 15px;
+
+            }
+
+
+            .setup-grid,
+            .lap-grid,
+            .service-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .footer-inner {
+
+                flex-direction: column;
+
             }
 
         }
 
     </style>
+
 </head>
 
 
 <body>
 
 
-<!-- ================================================================
+<!-- =============================================================
      NAVIGATION
-     ================================================================ -->
+     ============================================================= -->
 
 <nav>
 
     <div class="container nav-inner">
 
-        <a href="#home" class="logo">
+        <a href="#home" class="wordmark">
             KNIGHT'S <span>GARAGE</span>
         </a>
 
+
         <ul class="nav-links">
-            <li><a href="#setups">Setups</a></li>
-            <li><a href="#lap-times">Lap Times</a></li>
-            <li><a href="#coaching">Coaching</a></li>
-            <li><a href="#paint-shop">Paint Shop</a></li>
-            <li><a href="#about">About</a></li>
+
+            <li>
+                <a href="#setups">Setups</a>
+            </li>
+
+            <li>
+                <a href="#lap-times">Lap Times</a>
+            </li>
+
+            <li>
+                <a href="#coaching">Coaching</a>
+            </li>
+
+            <li>
+                <a href="#paint-shop">Paint Shop</a>
+            </li>
+
+            <li>
+                <a href="#about">About</a>
+            </li>
+
         </ul>
 
     </div>
@@ -517,9 +1064,10 @@
 </nav>
 
 
-<!-- ================================================================
+
+<!-- =============================================================
      HERO
-     ================================================================ -->
+     ============================================================= -->
 
 <section class="hero" id="home">
 
@@ -528,13 +1076,15 @@
         <div class="hero-content">
 
             <div class="eyebrow">
-                Sim Racing Performance
+                Knight's Garage
             </div>
+
 
             <h1>
                 Setups built<br>
-                from data.
+                from <span>data.</span>
             </h1>
+
 
             <p>
                 Track-specific iRacing setups, competitive lap-time
@@ -542,19 +1092,15 @@
                 through repeated on-track testing and data analysis.
             </p>
 
+
             <div class="hero-buttons">
 
-                <a
-                    href="#setups"
-                    class="button"
-                >
+                <a href="#setups" class="button">
                     Browse Setups
                 </a>
 
-                <a
-                    href="#coaching"
-                    class="button secondary"
-                >
+
+                <a href="#coaching" class="button secondary">
                     Driver Coaching
                 </a>
 
@@ -567,92 +1113,109 @@
 </section>
 
 
-<!-- ================================================================
-     SETUPS
-     ================================================================ -->
+
+<!-- =============================================================
+     SETUP SHOP
+     
+     EDIT SETUPS HERE.
+     
+     Each card contains:
+     - Image
+     - Car
+     - Track
+     - Reference pace
+     - Price
+     
+     To add another setup, copy an entire setup-card.
+     ============================================================= -->
 
 <section id="setups">
 
     <div class="container">
 
-        <div class="section-heading">
 
-            <div class="eyebrow">
-                Setup Shop
+        <div class="section-header">
+
+            <div>
+
+                <div class="eyebrow">
+                    Setup Shop
+                </div>
+
+                <h2>
+                    Built for the track.
+                </h2>
+
             </div>
 
-            <h2>
-                Track-specific setups.
-            </h2>
 
-            <p>
-                Developed through repeated testing, telemetry review,
-                and track-specific optimization.
+            <p class="section-description">
+                Track-specific setups developed through repeated
+                testing, telemetry review, and vehicle behavior
+                analysis.
             </p>
 
         </div>
 
 
-        <!-- ========================================================
-             SETUP CARDS
-
-             IMPORTANT:
-             To add/change a setup, edit the cards below.
-
-             image = your image path
-             car = car name
-             track = track name
-             pace = reference lap time
-             price = setup price
-             ======================================================== -->
-
 
         <div class="setup-grid">
 
 
-            <!-- SETUP 1 -->
+            <!-- =================================================
+                 SETUP 1
+                 ================================================= -->
 
             <div class="setup-card">
 
                 <img
                     src="images/bmw-watkins.jpg"
-                    alt="BMW M4 GT3 EVO at Watkins Glen"
+                    alt="BMW M4 GT3 EVO — Watkins Glen"
                     class="setup-image"
                 >
+
 
                 <div class="setup-content">
 
                     <div class="setup-car">
                         BMW M4 GT3 EVO
                     </div>
+
 
                     <div class="setup-track">
                         Watkins Glen
                     </div>
 
-                    <div class="setup-details">
 
-                        <div>
-                            <span class="detail-label">
+                    <div class="setup-meta">
+
+                        <div class="setup-meta-item">
+
+                            <span class="meta-label">
                                 Reference Pace
                             </span>
 
-                            <span class="detail-value">
+                            <span class="meta-value">
                                 1:45.065
                             </span>
+
                         </div>
 
-                        <div>
-                            <span class="detail-label">
+
+                        <div class="setup-meta-item">
+
+                            <span class="meta-label">
                                 Price
                             </span>
 
-                            <span class="detail-value">
+                            <span class="meta-value">
                                 $3.99
                             </span>
+
                         </div>
 
                     </div>
+
 
                     <a
                         href="#"
@@ -667,163 +1230,61 @@
             </div>
 
 
-            <!-- SETUP 2 -->
 
-            <div class="setup-card">
-
-                <img
-                    src="images/bmw-road-america.jpg"
-                    alt="BMW M4 GT3 EVO at Road America"
-                    class="setup-image"
-                >
-
-                <div class="setup-content">
-
-                    <div class="setup-car">
-                        BMW M4 GT3 EVO
-                    </div>
-
-                    <div class="setup-track">
-                        Road America
-                    </div>
-
-                    <div class="setup-details">
-
-                        <div>
-                            <span class="detail-label">
-                                Reference Pace
-                            </span>
-
-                            <span class="detail-value">
-                                2:02.588
-                            </span>
-                        </div>
-
-                        <div>
-                            <span class="detail-label">
-                                Price
-                            </span>
-
-                            <span class="detail-value">
-                                $3.99
-                            </span>
-                        </div>
-
-                    </div>
-
-                    <a
-                        href="#"
-                        onclick="openRequestForm(); return false;"
-                        class="button setup-button"
-                    >
-                        Request Setup
-                    </a>
-
-                </div>
-
-            </div>
-
-
-            <!-- SETUP 3 -->
-
-            <div class="setup-card">
-
-                <img
-                    src="images/bmw-monza.jpg"
-                    alt="BMW M4 GT3 EVO at Monza"
-                    class="setup-image"
-                >
-
-                <div class="setup-content">
-
-                    <div class="setup-car">
-                        BMW M4 GT3 EVO
-                    </div>
-
-                    <div class="setup-track">
-                        Monza
-                    </div>
-
-                    <div class="setup-details">
-
-                        <div>
-                            <span class="detail-label">
-                                Reference Pace
-                            </span>
-
-                            <span class="detail-value">
-                                1:45.424
-                            </span>
-                        </div>
-
-                        <div>
-                            <span class="detail-label">
-                                Price
-                            </span>
-
-                            <span class="detail-value">
-                                $3.99
-                            </span>
-                        </div>
-
-                    </div>
-
-                    <a
-                        href="#"
-                        onclick="openRequestForm(); return false;"
-                        class="button setup-button"
-                    >
-                        Request Setup
-                    </a>
-
-                </div>
-
-            </div>
-
-
-            <!-- SETUP 4 -->
+            <!-- =================================================
+                 SETUP 2
+                 ================================================= -->
 
             <div class="setup-card">
 
                 <img
                     src="images/bmw-motegi.jpg"
-                    alt="BMW M4 GT3 EVO at Motegi"
+                    alt="BMW M4 GT3 EVO — Motegi"
                     class="setup-image"
                 >
+
 
                 <div class="setup-content">
 
                     <div class="setup-car">
                         BMW M4 GT3 EVO
                     </div>
+
 
                     <div class="setup-track">
                         Motegi
                     </div>
 
-                    <div class="setup-details">
 
-                        <div>
-                            <span class="detail-label">
+                    <div class="setup-meta">
+
+                        <div class="setup-meta-item">
+
+                            <span class="meta-label">
                                 Reference Pace
                             </span>
 
-                            <span class="detail-value">
+                            <span class="meta-value">
                                 1:48.469
                             </span>
+
                         </div>
 
-                        <div>
-                            <span class="detail-label">
+
+                        <div class="setup-meta-item">
+
+                            <span class="meta-label">
                                 Price
                             </span>
 
-                            <span class="detail-value">
+                            <span class="meta-value">
                                 $3.99
                             </span>
+
                         </div>
 
                     </div>
+
 
                     <a
                         href="#"
@@ -838,49 +1299,61 @@
             </div>
 
 
-            <!-- SETUP 5 -->
+
+            <!-- =================================================
+                 SETUP 3
+                 ================================================= -->
 
             <div class="setup-card">
 
                 <img
                     src="images/bmw-mosport.jpg"
-                    alt="BMW M4 GT3 EVO at Mosport"
+                    alt="BMW M4 GT3 EVO — Canadian Tire Motorsport Park"
                     class="setup-image"
                 >
+
 
                 <div class="setup-content">
 
                     <div class="setup-car">
                         BMW M4 GT3 EVO
                     </div>
+
 
                     <div class="setup-track">
                         Canadian Tire Motorsport Park
                     </div>
 
-                    <div class="setup-details">
 
-                        <div>
-                            <span class="detail-label">
+                    <div class="setup-meta">
+
+                        <div class="setup-meta-item">
+
+                            <span class="meta-label">
                                 Reference Pace
                             </span>
 
-                            <span class="detail-value">
+                            <span class="meta-value">
                                 1:13.982
                             </span>
+
                         </div>
 
-                        <div>
-                            <span class="detail-label">
+
+                        <div class="setup-meta-item">
+
+                            <span class="meta-label">
                                 Price
                             </span>
 
-                            <span class="detail-value">
+                            <span class="meta-value">
                                 $3.99
                             </span>
+
                         </div>
 
                     </div>
+
 
                     <a
                         href="#"
@@ -895,15 +1368,19 @@
             </div>
 
 
-            <!-- SETUP 6 -->
+
+            <!-- =================================================
+                 SETUP 4
+                 ================================================= -->
 
             <div class="setup-card">
 
                 <img
                     src="images/bmw-interlagos.jpg"
-                    alt="BMW M4 GT3 EVO at Interlagos"
+                    alt="BMW M4 GT3 EVO — Interlagos"
                     class="setup-image"
                 >
+
 
                 <div class="setup-content">
 
@@ -911,33 +1388,41 @@
                         BMW M4 GT3 EVO
                     </div>
 
+
                     <div class="setup-track">
                         Interlagos
                     </div>
 
-                    <div class="setup-details">
 
-                        <div>
-                            <span class="detail-label">
+                    <div class="setup-meta">
+
+                        <div class="setup-meta-item">
+
+                            <span class="meta-label">
                                 Reference Pace
                             </span>
 
-                            <span class="detail-value">
+                            <span class="meta-value">
                                 1:30.364
                             </span>
+
                         </div>
 
-                        <div>
-                            <span class="detail-label">
+
+                        <div class="setup-meta-item">
+
+                            <span class="meta-label">
                                 Price
                             </span>
 
-                            <span class="detail-value">
+                            <span class="meta-value">
                                 $3.99
                             </span>
+
                         </div>
 
                     </div>
+
 
                     <a
                         href="#"
@@ -952,9 +1437,142 @@
             </div>
 
 
-            <!-- =====================================================
-                 COPY ONE OF THE CARDS ABOVE TO ADD MORE SETUPS.
-                 ===================================================== -->
+
+            <!-- =================================================
+                 SETUP 5
+                 ================================================= -->
+
+            <div class="setup-card">
+
+                <img
+                    src="images/bmw-road-america.jpg"
+                    alt="BMW M4 GT3 EVO — Road America"
+                    class="setup-image"
+                >
+
+
+                <div class="setup-content">
+
+                    <div class="setup-car">
+                        BMW M4 GT3 EVO
+                    </div>
+
+
+                    <div class="setup-track">
+                        Road America
+                    </div>
+
+
+                    <div class="setup-meta">
+
+                        <div class="setup-meta-item">
+
+                            <span class="meta-label">
+                                Reference Pace
+                            </span>
+
+                            <span class="meta-value">
+                                2:02.588
+                            </span>
+
+                        </div>
+
+
+                        <div class="setup-meta-item">
+
+                            <span class="meta-label">
+                                Price
+                            </span>
+
+                            <span class="meta-value">
+                                $3.99
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <a
+                        href="#"
+                        onclick="openRequestForm(); return false;"
+                        class="button setup-button"
+                    >
+                        Request Setup
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 SETUP 6
+                 ================================================= -->
+
+            <div class="setup-card">
+
+                <img
+                    src="images/bmw-monza.jpg"
+                    alt="BMW M4 GT3 EVO — Monza"
+                    class="setup-image"
+                >
+
+
+                <div class="setup-content">
+
+                    <div class="setup-car">
+                        BMW M4 GT3 EVO
+                    </div>
+
+
+                    <div class="setup-track">
+                        Monza
+                    </div>
+
+
+                    <div class="setup-meta">
+
+                        <div class="setup-meta-item">
+
+                            <span class="meta-label">
+                                Reference Pace
+                            </span>
+
+                            <span class="meta-value">
+                                1:45.424
+                            </span>
+
+                        </div>
+
+
+                        <div class="setup-meta-item">
+
+                            <span class="meta-label">
+                                Price
+                            </span>
+
+                            <span class="meta-value">
+                                $3.99
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <a
+                        href="#"
+                        onclick="openRequestForm(); return false;"
+                        class="button setup-button"
+                    >
+                        Request Setup
+                    </a>
+
+                </div>
+
+            </div>
 
 
         </div>
@@ -964,60 +1582,74 @@
 </section>
 
 
-<!-- ================================================================
+
+<!-- =============================================================
      LAP TIMES
-     ================================================================ -->
+     
+     Replace YOUR_VIDEO_ID with the ID from your YouTube video.
+     
+     Example:
+     https://www.youtube.com/watch?v=ABC123
+     
+     becomes:
+     https://www.youtube.com/embed/ABC123
+     ============================================================= -->
 
 <section id="lap-times" class="lap-section">
 
     <div class="container">
 
-        <div class="section-heading">
 
-            <div class="eyebrow">
-                Performance
+        <div class="section-header">
+
+            <div>
+
+                <div class="eyebrow">
+                    Performance
+                </div>
+
+                <h2>
+                    Lap-time proof.
+                </h2>
+
             </div>
 
-            <h2>
-                Lap-time proof.
-            </h2>
 
-            <p>
-                On-track demonstrations showing the pace achieved with
-                Knight's Garage setups.
+            <p class="section-description">
+                On-track demonstrations showing the pace achieved
+                with Knight's Garage setups.
             </p>
 
         </div>
 
 
+
         <div class="lap-grid">
 
 
-            <!-- LAP TIME VIDEO 1 -->
+            <!-- VIDEO 1 -->
 
             <div class="lap-card">
 
-                <div class="lap-video">
-
-                    <!--
-                    Replace the URL below with your YouTube EMBED URL.
-
-                    Example:
-                    https://www.youtube.com/embed/VIDEO_ID
-                    -->
+                <div class="video-container">
 
                     <iframe
                         src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
-                        title="Knight's Garage Lap Time"
+                        title="BMW M4 GT3 EVO — Watkins Glen"
                         allowfullscreen>
                     </iframe>
 
                 </div>
 
-                <div class="lap-content">
+
+                <div class="lap-info">
+
+                    <div class="lap-car">
+                        BMW M4 GT3 EVO
+                    </div>
 
                     <div class="lap-track">
-                        BMW M4 GT3 EVO — Watkins Glen
+                        Watkins Glen
                     </div>
 
                     <div class="lap-time">
@@ -1029,24 +1661,30 @@
             </div>
 
 
-            <!-- LAP TIME VIDEO 2 -->
+
+            <!-- VIDEO 2 -->
 
             <div class="lap-card">
 
-                <div class="lap-video">
+                <div class="video-container">
 
                     <iframe
                         src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
-                        title="Knight's Garage Lap Time"
+                        title="BMW M4 GT3 EVO — Road America"
                         allowfullscreen>
                     </iframe>
 
                 </div>
 
-                <div class="lap-content">
+
+                <div class="lap-info">
+
+                    <div class="lap-car">
+                        BMW M4 GT3 EVO
+                    </div>
 
                     <div class="lap-track">
-                        BMW M4 GT3 EVO — Road America
+                        Road America
                     </div>
 
                     <div class="lap-time">
@@ -1058,24 +1696,30 @@
             </div>
 
 
-            <!-- LAP TIME VIDEO 3 -->
+
+            <!-- VIDEO 3 -->
 
             <div class="lap-card">
 
-                <div class="lap-video">
+                <div class="video-container">
 
                     <iframe
                         src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
-                        title="Knight's Garage Lap Time"
+                        title="BMW M4 GT3 EVO — Monza"
                         allowfullscreen>
                     </iframe>
 
                 </div>
 
-                <div class="lap-content">
+
+                <div class="lap-info">
+
+                    <div class="lap-car">
+                        BMW M4 GT3 EVO
+                    </div>
 
                     <div class="lap-track">
-                        BMW M4 GT3 EVO — Monza
+                        Monza
                     </div>
 
                     <div class="lap-time">
@@ -1094,50 +1738,62 @@
 </section>
 
 
-<!-- ================================================================
+
+<!-- =============================================================
      COACHING
-     ================================================================ -->
+     ============================================================= -->
 
 <section id="coaching">
 
     <div class="container">
 
-        <div class="section-heading">
 
-            <div class="eyebrow">
-                Driver Development
+        <div class="section-header">
+
+            <div>
+
+                <div class="eyebrow">
+                    Driver Development
+                </div>
+
+                <h2>
+                    Drive faster.
+                </h2>
+
             </div>
 
-            <h2>
-                Drive faster.
-            </h2>
 
-            <p>
-                One-on-one coaching focused on finding lap time through
-                telemetry, driving technique, racecraft, and setup
-                development.
+            <p class="section-description">
+                One-on-one coaching focused on driving technique,
+                racecraft, telemetry, and setup development.
             </p>
 
         </div>
 
 
+
         <div class="service-grid">
+
 
             <div class="service-card">
 
-                <h3>
-                    1-on-1 Coaching
-                </h3>
-
-                <div class="service-price">
-                    $25 / hr
+                <div class="service-number">
+                    01 / COACHING
                 </div>
 
+                <h3>
+                    Driver Coaching
+                </h3>
+
                 <p>
-                    Personalized coaching sessions focused on your
-                    driving, vehicle behavior, and areas where you can
-                    find additional performance.
+                    Personalized sessions focused on finding lap time
+                    through driving technique, vehicle behavior,
+                    telemetry, and racecraft.
                 </p>
+
+                <div class="service-price">
+                    $25 / HR
+                </div>
 
                 <a
                     href="#"
@@ -1150,26 +1806,31 @@
             </div>
 
 
+
             <div class="service-card">
+
+                <div class="service-number">
+                    02 / DATA
+                </div>
 
                 <h3>
                     Telemetry Analysis
                 </h3>
 
-                <div class="service-price">
-                    Custom
-                </div>
-
                 <p>
-                    Review braking, throttle application, corner speed,
-                    racing lines, and other performance data to identify
-                    opportunities for improvement.
+                    Review braking, throttle application, corner
+                    speed, racing lines, and other performance data
+                    to identify opportunities for improvement.
                 </p>
+
+                <div class="service-price">
+                    CUSTOM
+                </div>
 
                 <a
                     href="#"
                     onclick="openRequestForm(); return false;"
-                    class="button"
+                    class="button secondary"
                 >
                     Request Analysis
                 </a>
@@ -1184,50 +1845,64 @@
 </section>
 
 
-<!-- ================================================================
-     PAINT SHOP
-     ================================================================ -->
 
-<section id="paint-shop" class="lap-section">
+<!-- =============================================================
+     PAINT SHOP
+     ============================================================= -->
+
+<section id="paint-shop">
 
     <div class="container">
 
-        <div class="section-heading">
 
-            <div class="eyebrow">
-                Paint Shop
+        <div class="section-header">
+
+            <div>
+
+                <div class="eyebrow">
+                    Paint Shop
+                </div>
+
+                <h2>
+                    Make it yours.
+                </h2>
+
             </div>
 
-            <h2>
-                Make it yours.
-            </h2>
 
-            <p>
-                Custom iRacing liveries and paint schemes built around
-                your car, race number, colors, and design ideas.
+            <p class="section-description">
+                Custom iRacing liveries and paint schemes built
+                around your car, race number, colors, and design ideas.
             </p>
 
         </div>
 
 
+
         <div class="service-grid">
 
 
+            <!-- CUSTOM LIVERY -->
+
             <div class="service-card">
+
+                <div class="service-number">
+                    01 / CUSTOM
+                </div>
 
                 <h3>
                     Custom Livery
                 </h3>
-
-                <div class="service-price">
-                    From $15
-                </div>
 
                 <p>
                     Custom vehicle designs including colors, race
                     numbers, sponsor placement, and customer-requested
                     themes.
                 </p>
+
+                <div class="service-price">
+                    FROM $15
+                </div>
 
                 <a
                     href="#"
@@ -1240,20 +1915,27 @@
             </div>
 
 
+
+            <!-- FREE LIVERIES -->
+
             <div class="service-card">
+
+                <div class="service-number">
+                    02 / FREE
+                </div>
 
                 <h3>
                     Free Liveries
                 </h3>
 
-                <div class="service-price">
-                    Free
-                </div>
-
                 <p>
                     Browse the collection of liveries and designs
                     available for download.
                 </p>
+
+                <div class="service-price">
+                    FREE
+                </div>
 
                 <a
                     href="#"
@@ -1272,16 +1954,20 @@
 </section>
 
 
-<!-- ================================================================
+
+<!-- =============================================================
      ABOUT
-     ================================================================ -->
+     ============================================================= -->
 
 <section id="about">
 
     <div class="container">
 
+
         <div class="about-grid">
 
+
+            <!-- CHANGE THIS IMAGE -->
 
             <img
                 src="images/about.jpg"
@@ -1296,9 +1982,11 @@
                     About Knight's Garage
                 </div>
 
+
                 <h2>
                     Built around performance.
                 </h2>
+
 
                 <p>
                     I'm Ryan Knight, a mechanical engineering graduate
@@ -1306,17 +1994,20 @@
                     and hands-on engineering.
                 </p>
 
+
                 <p>
                     Knight's Garage started as an independent project
-                    focused on applying the same engineering mindset used
-                    in vehicle development to sim racing.
+                    focused on applying the same engineering mindset
+                    used in vehicle development to sim racing.
                 </p>
+
 
                 <p>
                     Setups are developed through repeated testing,
-                    telemetry analysis, vehicle behavior evaluation, and
-                    track-specific optimization.
+                    telemetry analysis, vehicle behavior evaluation,
+                    and track-specific optimization.
                 </p>
+
 
                 <p>
                     The goal is simple: understand the car, find the
@@ -1325,6 +2016,7 @@
 
             </div>
 
+
         </div>
 
     </div>
@@ -1332,22 +2024,31 @@
 </section>
 
 
-<!-- ================================================================
-     FINAL CALL TO ACTION
-     ================================================================ -->
+
+<!-- =============================================================
+     FINAL CTA
+     ============================================================= -->
 
 <section class="cta">
 
     <div class="container">
 
+        <div class="eyebrow">
+            Knight's Garage
+        </div>
+
+
         <h2>
             Ready to find some lap time?
         </h2>
 
+
         <p>
             Submit a request and tell me what you're looking for.
-            I'll review the details and follow up with the next steps.
+            I'll review your request and respond with more information
+            and instructions on how to continue.
         </p>
+
 
         <a
             href="#"
@@ -1362,9 +2063,10 @@
 </section>
 
 
-<!-- ================================================================
+
+<!-- =============================================================
      FOOTER
-     ================================================================ -->
+     ============================================================= -->
 
 <footer>
 
@@ -1373,6 +2075,7 @@
         <div>
             © 2026 Knight's Garage
         </div>
+
 
         <div>
             Independent Sim Racing Performance
@@ -1384,55 +2087,71 @@
 
 
 
-<!-- ================================================================
+<!-- =============================================================
      EASY SETTINGS
      
-     THIS IS THE MOST IMPORTANT PART FOR YOU.
-
-     Change your Google Form link here.
-
-     You only need ONE Google Form for the entire website.
-     ================================================================ -->
+     =============================================================
+     
+     THIS IS THE ONLY PART YOU NEED TO CHANGE FOR THE GOOGLE FORM.
+     
+     Paste your ONE Google Form URL between the quotation marks.
+     
+     Example:
+     
+     const GOOGLE_FORM_URL =
+         "https://docs.google.com/forms/d/e/123456/viewform";
+     
+     Every Request button on the website will then open this
+     same form.
+     
+     ============================================================= -->
 
 <script>
 
 
-/* ================================================================
-   GOOGLE FORM
-   ================================================================ */
+    /* =========================================================
+       GOOGLE FORM
+       ========================================================= */
 
-const GOOGLE_FORM_URL =
-    "PASTE_YOUR_GOOGLE_FORM_LINK_HERE";
+    const GOOGLE_FORM_URL =
+        "PASTE_YOUR_GOOGLE_FORM_LINK_HERE";
 
 
-/* ================================================================
-   OPEN GOOGLE FORM
-   ================================================================ */
 
-function openRequestForm() {
+    /* =========================================================
+       OPEN REQUEST FORM
+       ========================================================= */
 
-    if (
-        GOOGLE_FORM_URL ===
-        "https://forms.gle/koAGP6j8gD6TuhPS8"
-    ) {
+    function openRequestForm() {
 
-        alert(
-            "The Knight's Garage request form has not been connected yet."
+
+        if (
+            GOOGLE_FORM_URL ===
+            "https://forms.gle/p7SevGWq9XVcuM5t9"
+        ) {
+
+            alert(
+                "The Knight's Garage request form has not been connected yet."
+            );
+
+            return;
+
+        }
+
+
+        window.open(
+            GOOGLE_FORM_URL,
+            "_blank"
         );
 
-        return;
     }
-
-    window.open(
-        GOOGLE_FORM_URL,
-        "_blank"
-    );
-}
 
 
 </script>
 
 
 </body>
+
 </html>
 ```
+
