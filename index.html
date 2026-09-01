@@ -312,9 +312,20 @@
       font-size: 1.1rem;
     }
 
+    /* Setup request button */
     .setup-card .buy {
-      font-size: 0.85rem;
-      color: var(--pit-teal);
+      display: inline-block;
+      padding: 8px 12px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      border-radius: 3px;
+      background: var(--flag-amber);
+      color: #181a1d;
+      transition: background 0.15s ease;
+    }
+
+    .setup-card .buy:hover {
+      background: #ffbb1f;
     }
 
     .setup-card.extra {
@@ -1026,7 +1037,7 @@
     };
 
 
-    // ============ ⚙️  don't need to edit anything below this line  ⚙️ ============
+    // ============ ⚙️  don't need to edit anything below this line ⚙️ ============
 
     function el(html) {
       const t = document.createElement('template');
