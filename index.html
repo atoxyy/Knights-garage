@@ -190,9 +190,39 @@
     .video-card { background: var(--surface); border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
     .video-frame { aspect-ratio: 16 / 9; background: var(--surface-2); position: relative; }
     .video-frame iframe { width: 100%; height: 100%; border: 0; }
+
+    .video-frame .poster {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+    .video-frame .poster img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.55);
+    }
+    .video-frame .poster .soon-badge {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--flag-amber);
+      text-align: center;
+      padding: 12px;
+    }
+
     .video-meta { padding: 14px 16px; }
     .video-meta .laptime { font-family: 'Oswald', sans-serif; color: var(--pit-teal); font-size: 1rem; }
     .video-meta .desc { color: var(--ink-dim); font-size: 0.85rem; margin-top: 4px; }
+    .video-card.extra { display: none; }
+    .video-grid.show-all .video-card.extra { display: block; }
 
     .coach-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
     .coach-list { display: flex; flex-direction: column; gap: 16px; }
@@ -318,6 +348,9 @@
         <p>Onboard footage for every setup listed above — see it before you buy it.</p>
       </div>
       <div class="video-grid" id="videoGrid"><!-- filled in by SITE_DATA.videos --></div>
+      <div class="view-more-wrap">
+        <button class="btn btn-ghost" id="videoToggleBtn" onclick="toggleVideos()">View all lap times</button>
+      </div>
     </div>
   </section>
 
@@ -401,15 +434,20 @@
   </footer>
 
 
-  <!-- ====================================================================== 
+  <!-- ======================================================================
        ✏️  EDIT CONTENT HERE  ✏️
-  <!-- ====================================================================== -->
+       ====================================================================== -->
 
   <script>
     const SITE_DATA = {
 
       requestFormUrl: "https://forms.gle/p7SevGWq9XVcuM5t9",
       setupsPreviewCount: 4,
+
+      // How many lap-time videos show before "View all lap times" expands
+      // the rest. Videos without a real youtubeId yet just show the setup
+      // photo with a "video coming soon" badge instead of a broken embed.
+      videosPreviewCount: 3,
 
       heroStats: [
         { track: "Watkins Glen — GT3", time: "1:42.31" },
@@ -432,10 +470,23 @@
         { image: "images/corvette-z06-gt3.r.jpg", alt: "GT3 car at Circuit des 24 Heures du Mans", track: "Circuit des 24 Heures du Mans", car: "Chevrolet Corvette Z06 GT3.R", referencePace: "3:49.730", note: "Race + qualy setup", price: "$3.99" },
       ],
 
+      // One entry per track/car, matching the setup shop 1:1. Fill in a
+      // real youtubeId (the part of a YouTube URL after "v=" or "youtu.be/")
+      // as you record each lap — until then it shows the setup photo with
+      // a "video coming soon" badge instead of an empty embed.
       videos: [
-        { youtubeId: "REPLACE_WITH_ID", title: "Watkins Glen onboard, GT3", laptime: "1:42.31 — Watkins Glen International", desc: "BMW M4 GT3 race stint" },
-        { youtubeId: "REPLACE_WITH_ID", title: "Spa onboard, GT3", laptime: "2:16.88 — Circuit de Spa-Francorchamps", desc: "BMW M4 GT3 qualifying lap" },
-        { youtubeId: "REPLACE_WITH_ID", title: "Road Atlanta onboard, GT3", laptime: "1:20.45 — Road Atlanta", desc: "BMW M4 GT3 qualifying lap" },
+        { image: "images/BMW-M4-GT3-Evo.jpg.jpg", youtubeId: "REPLACE_WITH_ID", title: "Watkins Glen onboard, GT3", laptime: "1:45.065 — Watkins Glen International", desc: "BMW M4 GT3 reference lap" },
+        { image: "images/Ferrari296GT3.jpg", youtubeId: "REPLACE_WITH_ID", title: "Motegi onboard, GT3", laptime: "1:48.178 — Mobility Resort Motegi", desc: "Ferrari 296 GT3 reference lap" },
+        { image: "images/BMW-M4-GT3-Evo.jpg.jpg", youtubeId: "REPLACE_WITH_ID", title: "Spa onboard, GT3", laptime: "2:16.0 — Circuit de Spa-Francorchamps", desc: "BMW M4 GT3 reference lap" },
+        { image: "images/porsche992rgt3.jpg", youtubeId: "REPLACE_WITH_ID", title: "Canadian Tire Motorsports Park onboard, GT3", laptime: "1:14.4 — Canadian Tire Motorsports Park", desc: "Porsche 911 GT3 R (992) reference lap" },
+        { image: "images/BMW-M4-GT3-Evo.jpg.jpg", youtubeId: "REPLACE_WITH_ID", title: "Interlagos onboard, GT3", laptime: "1:30.364 — Autódromo José Carlos Pace", desc: "BMW M4 GT3 reference lap" },
+        { image: "images/BMW-M4-GT3-Evo.jpg.jpg", youtubeId: "REPLACE_WITH_ID", title: "Road America onboard, GT3", laptime: "2:02.588 — Road America", desc: "BMW M4 GT3 reference lap" },
+        { image: "images/mclaren-720s-gt3-evo.jpg", youtubeId: "REPLACE_WITH_ID", title: "Monza onboard, GT3", laptime: "1:45.339 — Autodromo Nazionale Monza", desc: "McLaren 720S GT3 EVO reference lap" },
+        { image: "images/Ferrari296GT3.jpg", youtubeId: "REPLACE_WITH_ID", title: "Fuji onboard, GT3", laptime: "1:33.701 — Fuji International Speedway", desc: "Ferrari 296 GT3 reference lap" },
+        { image: "images/BMW-M4-GT3-Evo.jpg.jpg", youtubeId: "REPLACE_WITH_ID", title: "Daytona Road Course onboard, GT3", laptime: "1:44.9 — Daytona International Speedway", desc: "BMW M4 GT3 reference lap" },
+        { image: "images/porsche992rgt3.jpg", youtubeId: "REPLACE_WITH_ID", title: "VIR onboard, GT3", laptime: "1:43.456 — Virginia International Raceway", desc: "Porsche 911 GT3 R (992) reference lap" },
+        { image: "images/BMW-M4-GT3-Evo.jpg.jpg", youtubeId: "REPLACE_WITH_ID", title: "Road Atlanta onboard, GT3", laptime: "1:16.8 — Road Atlanta", desc: "BMW M4 GT3 reference lap" },
+        { image: "images/corvette-z06-gt3.r.jpg", youtubeId: "REPLACE_WITH_ID", title: "Le Mans onboard, GT3", laptime: "3:49.730 — Circuit des 24 Heures du Mans", desc: "Chevrolet Corvette Z06 GT3.R reference lap" },
       ],
 
       freePaints: [
@@ -515,10 +566,21 @@
 
     function renderVideos() {
       const wrap = document.getElementById('videoGrid');
-      SITE_DATA.videos.forEach(v => {
+      const n = SITE_DATA.videosPreviewCount;
+
+      SITE_DATA.videos.forEach((v, i) => {
+        const hasVideo = v.youtubeId && v.youtubeId !== 'REPLACE_WITH_ID';
+
+        const frameInner = hasVideo
+          ? `<iframe src="https://www.youtube.com/embed/${v.youtubeId}" title="${v.title}" allowfullscreen></iframe>`
+          : `<div class="poster">
+               <img src="${v.image}" alt="${v.title}">
+               <div class="soon-badge">Video coming soon</div>
+             </div>`;
+
         wrap.appendChild(el(`
-          <div class="video-card">
-            <div class="video-frame"><iframe src="https://www.youtube.com/embed/${v.youtubeId}" title="${v.title}" allowfullscreen></iframe></div>
+          <div class="video-card${i >= n ? ' extra' : ''}">
+            <div class="video-frame">${frameInner}</div>
             <div class="video-meta">
               <div class="laptime">${v.laptime}</div>
               <div class="desc">${v.desc}</div>
@@ -526,6 +588,17 @@
           </div>
         `));
       });
+
+      if (SITE_DATA.videos.length <= n) {
+        document.getElementById('videoToggleBtn').style.display = 'none';
+      }
+    }
+
+    function toggleVideos() {
+      const grid = document.getElementById('videoGrid');
+      const btn = document.getElementById('videoToggleBtn');
+      const expanded = grid.classList.toggle('show-all');
+      btn.textContent = expanded ? 'Show fewer lap times' : 'View all lap times';
     }
 
     function renderFreePaints() {
